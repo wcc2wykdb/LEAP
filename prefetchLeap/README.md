@@ -1,8 +1,15 @@
 # Description
-
-The purpose of the plugin is to increase the cache-hit ratio for a sequence of
-objects which URL paths follow a common pattern.
-
-# Documentation
-Details and examples can be found in [prefetch plugin documentation](../../doc/admin-guide/plugins/prefetch.en.rst).
+This is an apache traffic server plugin.
+Recomended remap config:
+```
+map http://www.example.com/ http://server1.example.com/ \
+@plugin=/opt/ts/libexec/trafficserver/cachekey.so @pparam=--remove-all-params=true \
+@plugin=/opt/ts/libexec/trafficserver/myprefetch.so \
+@pparam=--front=true \
+@pparam=--fetch-policy=simple \
+@pparam=--fetch-path-pattern=/(.*-)(\d+)(.*)/$1{$2+1}$3/ \
+@pparam=--fetch-count=1 \
+@pparam=--exact-match=true \
+@pparam=--log-name=prefetch
+```
 
