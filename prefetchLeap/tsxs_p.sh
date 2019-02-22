@@ -1,0 +1,4 @@
+/opt/ts/bin/tsxs -I/root/download/trafficserver/trafficserver-8.0.0/include -I/root/download/trafficserver/trafficserver-8.0.0/include/ts -I/root/download/trafficserver/trafficserver-8.0.0/include/tscpp -I/opt/libtorch/include -I/root/anaconda3/include -L/root/download/trafficserver/trafficserver-8.0.0/lib -L/opt/ts/lib -L/opt/libtorch/lib -L/root/anaconda3/lib -ltorch -ltscppapi -lpthread -lmkl_rt -lmkl_avx2 -lmkl_def  -lmkl_core -o prefetchleap.so -c plugin.cc common.cc configs.cc fetch_policy_lru.cc fetch_policy_simple.cc fetch_policy.cc fetch.cc headers.cc pattern.cc
+
+/opt/ts/bin/tsxs -o prefetchleap.so -i
+cp ./prefetchleap.so /opt/ts/libexec/trafficserver
